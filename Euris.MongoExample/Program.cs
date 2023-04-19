@@ -15,7 +15,7 @@ if (connectionString == null)
     Environment.Exit(0);
 }
 
-var client = new MongoClient(connectionString);
+var client = new MongoClient(connectionString); // connectionString -> "mongodb://<username>:<password>@localhost/"
 
 //BSON
 //var bsonCollection = client.GetDatabase("test").GetCollection<BsonDocument>("test");
@@ -40,6 +40,8 @@ var client = new MongoClient(connectionString);
 //var serializedDocument = JsonConvert.SerializeObject(books, Formatting.Indented);
 //Console.WriteLine(serializedDocument);
 
+
+////CREATE COLLECTION
 //client.GetDatabase("test").CreateCollection("test5");
 var newCollection = client.GetDatabase("test").GetCollection<BsonDocument>("test5");
 
@@ -50,6 +52,8 @@ var exampleDocument = new BsonDocument
     {"Surname", "Rossi"},
     {"SomeData", "Initial Data"}
 };
+
+//DEFINE FILTER (used for update/insert/delete)
 var filterById = Builders<BsonDocument>.Filter.Eq("PersonId", exampleDocument["PersonId"]);
 
 //DELETE
